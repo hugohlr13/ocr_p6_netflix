@@ -55,3 +55,116 @@ body{
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Films & Series*/
+
+.film-and-series{
+    background-color: black;
+    padding: 25px;
+}
+
+.film-and-series .section{
+    margin-bottom: 55px;
+}
+
+.film-and-series .section h2{
+    color: #fff;
+}
+
+.film-and-series .section .list{
+    display: flex;
+    overflow-x: auto;
+}
+
+.film-and-series .section a{
+    padding-left: 5px;
+    transition: transform 0.25s;
+}
+
+.film-and-series .section a:hover{
+    transform: scale(1.05);
+}
+
+.film-and-series .section a img{
+    height: 140px;
+    flex: 0 0 25%; 
+}
+
+/* End Films & Series */
+
+/* Carousel */
+
+*, *::after, *::before {
+    box-sizing: border-box;
+  }
+
+:root {
+  --handle-size: 3rem;
+  --img-gap: .25rem;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.handle {
+    border: none;
+    border-radius: 1rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, .25);
+    z-index: 10;
+    margin: var(--img-gap) 0;
+    width: var(--handle-size);
+    cursor: pointer;
+    font-size: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    line-height: 0;
+    transition: background-color 150ms ease-in-out;
+  }
+
+.left-handle {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.right-handle {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+.handle:hover,
+.handle:focus {
+  background-color: rgba(255, 255, 255, .5);
+}
+
+.text {
+    transition: transform 150ms ease-in-out;
+  }
+
+.handle:hover .text,
+.handle:focus .text {
+  transform: scale(1.2);
+}
+
+
+/* Footer */
+
+footer{
+    background-color: black;
+    padding: 25px 100px;
+    color: grey;
+}
+
+footer .columns{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* End of footer */
