@@ -1,16 +1,25 @@
+.containerfull {
+    margin-top: 50px;
+}
+
 /* Navigation bar */
 nav {
+    position: fixed;
+    top: 0;
+    z-index: 999;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: black;
+    background-color: rgb(20,20,20);
     color: #fff;
     padding: 0 25px;
+    width: 100%;
 }
 
 nav .left {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 nav .left img {
@@ -26,26 +35,27 @@ nav .left .tab {
 nav .left .tab p {
     margin-left: 10px;
     cursor: pointer;
-    color: #909191;
+    color: rgb(255, 255, 255);
 }
 
 nav .left .tab p:hover{
-    color: #fff;
+    color: #909191;
 }
 
 nav .right {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 nav .right p {
     margin-right: 10px;
     cursor: pointer;
-    color: #909191;
+    color: white;
 }
 
 nav .right p:hover{
-    color: #fff
+    color: #909191;
 }
 
 /* End of navigation bar */
@@ -53,7 +63,7 @@ nav .right p:hover{
 /* Carousel UI */
 
 .section {
-    background-color: black;
+    background-color: rgb(14,14,14);
     padding: 25px;
 }
 
@@ -93,13 +103,13 @@ nav .right p:hover{
 body {
     margin: 0;
     color: white;
-    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(20,20,20);
 }
 
 .slider {
     --slider-index: 0;
-    --items-per-screen: 6;
+    --items-per-screen: 7;
     display: flex;
     flex-grow: 1;
     margin: 0 var(--img-gap);
@@ -113,7 +123,7 @@ body {
     padding: var(--img-gap);
     border-radius: .75rem;
     overflow: hidden;
-    height: 125px;
+    height: 120px;
 }
 
 .handle {
@@ -122,18 +132,18 @@ body {
     flex-grow: 0;
     flex-shrink: 0;
     width: var(--handle-size);
-    background-color: rgba(255, 255, 255, .25);
     z-index: 10;
     margin: var(--img-gap) 0;
     padding: 0 .5rem;
     cursor: pointer;
-    font-size: 5rem;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     line-height: 0;
-    transition: background-color 150ms ease-in-out;
+    transition: transform .1s ease-out 0s;
+    overflow: hidden;
+    opacity: 0%;
 }
 
 .left-handle {
@@ -148,20 +158,36 @@ body {
 
 .handle:hover,
 .handle:focus {
-    background-color: rgb(255, 255, 255, .5);
+    background-color: black;
+    opacity: 50%;
 }
+
 
 .text {
     transition: transform 150ms ease-in-out;
+    color: #fff;
+    font-size: 2.5vw;
 }
 
 .handle:hover .text,
 .handle:focus .text {
-    transform: scale(1.2);
+    transform: scale(1.5);
 }
 
-.section {
+.progress-bar {
+    display: flex;
+    gap: .10rem;
+}
 
+.progress-item {
+    flex: 0 0 0.75rem;
+    width: 1rem;
+    height: .10rem;
+    background-color: rgba(255, 255, 255, .5);
+}
+
+.progress-item.active {
+    background-color: rgba(255, 255, 255, .9);
 }
 
 .header {
@@ -174,22 +200,6 @@ body {
 .title {
     font-size: 1.4vw;
     margin: 0;
-}
-
-.progress-bar {
-    display: flex;
-    gap: .25rem;
-}
-
-.progress-item {
-    flex: 0 0 1.5rem;
-    min-width: 1.5rem;
-    height: .5rem;
-    background-color: rgba(255, 255, 255, .5);
-}
-
-.progress-item.active {
-    background-color: rgba(255, 255, 255, .9);
 }
 
 @media (max-width: 1200px) {
@@ -215,7 +225,7 @@ body {
 /* Footer */
 
 footer{
-    background-color: black;
+    background-color: rgb(14,14,14);
     padding: 25px 100px;
     color: grey;
 }
