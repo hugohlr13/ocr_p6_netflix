@@ -107,3 +107,33 @@ window.addEventListener('scroll', () => {
   }
 });
 
+
+// Modal
+
+const images = document.querySelectorAll('.slider img');
+const modal = document.querySelector('.modal');
+const modalInfo = document.querySelector('.modal-info');
+
+images.forEach(img => {
+    img.addEventListener('click', e => {
+        modal.style.display = "block";
+    });
+});
+
+// close modal inside buton
+const closeBtn = document.querySelector('.modal button');
+
+closeBtn.addEventListener('click', () => {
+    modal.style.display = "none";
+});
+
+
+
+
+
+
+
+
+
+
+
