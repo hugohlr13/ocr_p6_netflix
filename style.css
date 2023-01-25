@@ -1,8 +1,4 @@
-.containerfull {
-    margin-top: 50px;
-}
-
-/* Navigation bar */
+/* Header Navigation bar */
 nav {
     position: fixed;
     top: 0;
@@ -58,7 +54,55 @@ nav .right p:hover{
     color: #909191;
 }
 
-/* End of navigation bar */
+nav.transparent {
+    background-color: rgba(20, 20, 20, 0%);
+  }
+
+/* End of Header navigation bar */
+
+/* Best film */
+
+/* best movie section */
+
+.best-movie-container-image {
+    position: relative;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.best-movie-info {
+    margin-left: 50px;
+    position: absolute;
+    top: 50%; 
+    transform: translate(0%, -50%);
+}
+
+@media only screen and (max-width: 600px) {
+    .best-movie-info {
+      width: 70%;
+      height: 70%;
+    }
+  }
+
+h1 {
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.best-movie-container-image img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 50%;
+}
+
+p {
+    text-align: justify;
+}
+
+/* End of Best film */
 
 /* Carousel UI */
 

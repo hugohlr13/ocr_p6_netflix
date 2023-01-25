@@ -85,3 +85,31 @@ function throttle(cb, delay = 1000) {
       setTimeout(timeoutFunc, delay)
     }
   }
+
+
+  
+// Récupération des éléments nécessaires
+const nav = document.querySelector('nav');
+const bestMovie = document.querySelector('.best-movie');
+const section = document.querySelector('.section');
+const footer = document.querySelector('footer');
+
+// Fonction pour vérifier la position de la section "best-movie" par rapport à la fenêtre
+function checkPosition() {
+  // Récupération des positions de la section "best-movie" et des sections "section" et "footer"
+  const bestMoviePos = bestMovie.getBoundingClientRect().top;
+  const sectionPos = section.getBoundingClientRect().top;
+  const footerPos = footer.getBoundingClientRect().top;
+
+  // Vérification de la position de la section "best-movie"
+  if (bestMoviePos <= 0 && sectionPos > 0) {
+    // Ajout de la classe "transparent" au nav
+    nav.classList.add('transparent');
+  } else {
+    // Suppression de la classe "transparent" au nav
+    nav.classList.remove('transparent');
+  }
+}
+
+// Écoute de l'événement de défilement
+window.addEventListener('scroll', checkPosition);
