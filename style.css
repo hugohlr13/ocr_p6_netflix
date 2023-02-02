@@ -348,8 +348,8 @@ footer .columns{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
+    width: 60%;
+    height: 90%;
     background-color: black;
     border-radius: .5rem;
     z-index: 1;
@@ -357,12 +357,17 @@ footer .columns{
 
 .modal-content {
     padding: 20px;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    grid-template-rows: 200px 150px 200px;
+    gap: 10px;
+
 }
 
 .modal-info {
     font-size: 16px;
 }
+
 
 .modal button {
     position: absolute;
