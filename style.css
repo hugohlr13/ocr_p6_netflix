@@ -220,6 +220,8 @@ body {
 }
 
 .slider > img {
+    background-size: cover;
+    background-position: center;
     flex: 0 0 calc(100% / var(--items-per-screen));
     max-width: calc(100% / var(--items-per-screen));
     padding: var(--img-gap);
@@ -227,6 +229,7 @@ body {
     overflow: hidden;
     height: 120px;
 }
+
 
 .handle {
     border: none;

@@ -128,12 +128,13 @@ closeBtn.addEventListener('click', () => {
 });
 
 
+// API Movies info http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=6
 
-
-
-
-
-
+fetch('http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=6')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  });
 
 
 
