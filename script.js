@@ -128,7 +128,28 @@ closeBtn.addEventListener('click', () => {
     modal.style.display = "none";
 });
 
-// API 
+
+// Trailer Best Movie
+
+  document.querySelector('.button-play').addEventListener('click', function() {
+    var modal = document.createElement('div');
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.background = 'rgba(0, 0, 0, 0.8)';
+    modal.style.zIndex = '999';
+    modal.innerHTML = '<iframe width="1000" height="600" src="https://www.youtube.com/embed/KgELjaFRg4w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></iframe>';
+    document.body.appendChild(modal);
+
+    modal.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+  });
+
+
+// API Most Rated Films - Categories
 
 const apiUrls = [
   "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=9",

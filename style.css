@@ -87,7 +87,7 @@ nav.transparent {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
-    opacity: 50%;
+    opacity: 80%;
 }
 
 .best-movie-synopsis {
