@@ -211,7 +211,7 @@ body {
 
 .slider {
     --slider-index: 0;
-    --items-per-screen: 6;
+    --items-per-screen: 7;
     display: flex;
     flex-grow: 1;
     margin: 0 var(--img-gap);

@@ -9,33 +9,34 @@ document.addEventListener("click", e => {
 })
 
 function onHandleClick(handle) {
-    const progressBar = handle.closest(".section").querySelector(".progress-bar")
-    const slider = handle.closest(".container").querySelector(".slider")
-    const sliderIndex = parseInt(getComputedStyle(slider).getPropertyValue("--slider-index"))
-    const progressBarItemCount = progressBar.children.length
-    if (handle.classList.contains("left-handle")) {
-        if (sliderIndex - 1 < 0) {
-            slider.style.setProperty("--slider-index", progressBarItemCount - 1)
-            progressBar.children[sliderIndex].classList.remove("active")
-            progressBar.children[progressBarItemCount - 1].classList.add("active")
-        } else {
-            slider.style.setProperty("--slider-index", sliderIndex - 1)
-            progressBar.children[sliderIndex].classList.remove("active")
-            progressBar.children[sliderIndex - 1].classList.add("active")
-        }
-    }
-    if (handle.classList.contains("right-handle")) {
-        if (sliderIndex + 1 >= progressBarItemCount) {
-            slider.style.setProperty("--slider-index", 0)
-            progressBar.children[sliderIndex].classList.remove("active")
-            progressBar.children[0].classList.add("active")
-        } else {
-            slider.style.setProperty("--slider-index", sliderIndex + 1)
-            progressBar.children[sliderIndex].classList.remove("active")
-            progressBar.children[sliderIndex + 1].classList.add("active")
-        }
-    }
+  const progressBar = handle.closest(".section").querySelector(".progress-bar")
+  const slider = handle.closest(".container").querySelector(".slider")
+  const sliderIndex = parseInt(getComputedStyle(slider).getPropertyValue("--slider-index"))
+  const progressBarItemCount = progressBar.children.length
+  if (handle.classList.contains("left-handle")) {
+      if (sliderIndex - 1 < 0) {
+          slider.style.setProperty("--slider-index", progressBarItemCount - 1)
+          progressBar.children[sliderIndex].classList.remove("active")
+          progressBar.children[progressBarItemCount - 1].classList.add("active")
+      } else {
+          slider.style.setProperty("--slider-index", sliderIndex - 1)
+          progressBar.children[sliderIndex].classList.remove("active")
+          progressBar.children[sliderIndex - 1].classList.add("active")
+      }
+  }
+  if (handle.classList.contains("right-handle")) {
+      if (sliderIndex + 1 >= progressBarItemCount) {
+          slider.style.setProperty("--slider-index", 0)
+          progressBar.children[sliderIndex].classList.remove("active")
+          progressBar.children[0].classList.add("active")
+      } else {
+          slider.style.setProperty("--slider-index", sliderIndex + 1)
+          progressBar.children[sliderIndex].classList.remove("active")
+          progressBar.children[sliderIndex + 1].classList.add("active")
+      }
+  }
 }
+
 
 const throttleProgressBar = throttle(() => {
     document.querySelectorAll(".progress-bar").forEach(calculateProgressBar)
@@ -127,16 +128,39 @@ closeBtn.addEventListener('click', () => {
     modal.style.display = "none";
 });
 
+// API 
 
-// API Movies info http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=6
+const apiUrls = [
+  "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=9",
+  "http://localhost:8000/api/v1/titles/?genre=comedy&sort_by=-imdb_score&page_size=9",
+  "http://localhost:8000/api/v1/titles/?genre=thriller&sort_by=-imdb_score&page_size=9",
+  "http://localhost:8000/api/v1/titles/?genre=history&sort_by=-imdb_score&page_size=9"
+];
 
-fetch('http://localhost:8000/api/v1/titles/1508669')
-  .then(response => response.json())
-  .then(data => {
-    const image_url = data.image_url;
-    const imgs = document.querySelectorAll('.slider img');
-    console.log(data)
-    imgs.forEach(img => {
-      img.src = image_url;
+const categories = [
+  "most-rated-films",
+  "category-1",
+  "category-2",
+  "category-3"
+];
+
+const fetchData = async () => {
+  for (let i = 0; i < apiUrls.length; i++) {
+    const slider = document.querySelector(`.slider.${categories[i]}`);
+    const response = await fetch(apiUrls[i])
+    const data = await response.json()
+    console.log(categories[i], data);
+
+    data.results.forEach(result => {
+      let image = document.createElement('img');
+      image.src = result.image_url;
+      slider.appendChild(image);
     });
-  });
+  }
+
+  document.querySelectorAll(".progress-bar").forEach(calculateProgressBar)
+}
+
+fetchData();
+
+
