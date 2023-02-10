@@ -174,12 +174,12 @@ const fetchData = async () => {
 
 fetchData();
 
-// Close the modal when the user clicks on close button
+// Femerture de la modale au clic sur la croix
 document.querySelector(".close").addEventListener("click", function() {
   document.querySelector("#myModal").style.display = "none";
 });
 
-// Close the modal when the user clicks outside of the modal content
+// Fermeture de la modale au clic en dehors de la modale
 window.addEventListener("click", function(event) {
   if (event.target == document.querySelector("#myModal")) {
     document.querySelector("#myModal").style.display = "none";
