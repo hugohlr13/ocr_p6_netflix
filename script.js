@@ -108,46 +108,27 @@ window.addEventListener('scroll', () => {
   }
 });
 
-
-// Modal
-
-const images = document.querySelectorAll('.slider img');
-const modal = document.querySelector('.modal');
-const modalInfo = document.querySelector('.modal-info');
-
-images.forEach(img => {
-    img.addEventListener('click', e => {
-        modal.style.display = "block";
-    });
-});
-
-// close modal inside buton
-const closeBtn = document.querySelector('.modal button');
-
-closeBtn.addEventListener('click', () => {
-    modal.style.display = "none";
-});
-
-
 // Trailer Best Movie
 
-  document.querySelector('.button-play').addEventListener('click', function() {
-    var modal = document.createElement('div');
-    modal.style.position = 'fixed';
-    modal.style.top = '0';
-    modal.style.left = '0';
-    modal.style.width = '100%';
-    modal.style.height = '100%';
-    modal.style.background = 'rgba(0, 0, 0, 0.8)';
-    modal.style.zIndex = '999';
-    modal.innerHTML = '<iframe width="1000" height="600" src="https://www.youtube.com/embed/KgELjaFRg4w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></iframe>';
-    document.body.appendChild(modal);
+document.querySelector('.button-play').addEventListener('click', function() {
+  var modal = document.createElement('div');
+  modal.style.position = 'fixed';
+  modal.style.top = '0';
+  modal.style.left = '0';
+  modal.style.width = '100%';
+  modal.style.height = '100%';
+  modal.style.background = 'rgba(0, 0, 0, 0.8)';
+  modal.style.zIndex = '999';
+  modal.innerHTML = '<iframe width="1000" height="600" src="https://www.youtube.com/embed/KgELjaFRg4w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></iframe>';
+  document.body.appendChild(modal);
 
-    modal.addEventListener('click', function() {
-      modal.style.display = 'none';
-    });
+  modal.addEventListener('click', function() {
+    modal.style.display = 'none';
   });
+});
 
+
+// API Most Rated Films - Categories
 
 // API Most Rated Films - Categories
 
@@ -175,6 +156,10 @@ const fetchData = async () => {
     data.results.forEach(result => {
       let image = document.createElement('img');
       image.src = result.image_url;
+      image.addEventListener("click", function() {
+        document.querySelector("#modalImage").src = result.image_url;
+        document.querySelector("#myModal").style.display = "block";
+      });
       slider.appendChild(image);
     });
   }
@@ -183,5 +168,17 @@ const fetchData = async () => {
 }
 
 fetchData();
+
+// Close the modal when the user clicks on close button
+document.querySelector(".close").addEventListener("click", function() {
+  document.querySelector("#myModal").style.display = "none";
+});
+
+// Close the modal when the user clicks outside of the modal content
+window.addEventListener("click", function(event) {
+  if (event.target == document.querySelector("#myModal")) {
+    document.querySelector("#myModal").style.display = "none";
+  }
+});
 
 

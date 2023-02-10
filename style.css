@@ -346,49 +346,38 @@ footer .columns{
 /* Modal */
 
 .modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    height: 90%;
-    background-color: black;
-    border-radius: .5rem;
-    z-index: 1;
-}
+    display: none; /* Hide the modal */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
 
-.modal-content {
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 300px 300px 300px;
-    grid-template-rows: 200px 150px 200px;
-    gap: 10px;
+  
+  .modal-content {
+    position: relative;
+    background-color: rgb(14, 14, 14);
+    margin: auto;
+    padding: 0;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 
-}
-
-.modal-info {
-    font-size: 16px;
-}
-
-
-.modal button {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background-color: black;
+  .close {
     color: white;
-    padding: 5px 10px;
+    float: right;
+    font-size: 36px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .close:hover,
+  .close:focus {
+    text-decoration: none;
     cursor: pointer;
-    border: none;
-    border-radius: .5rem;
-}
-
-.fa-solid.fa-xmark {
-    font-size: 20px;
-    line-height: 40px;
-}
-
-
-
-/* End of Modal */
+  }
