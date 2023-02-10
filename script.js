@@ -130,8 +130,6 @@ document.querySelector('.button-play').addEventListener('click', function() {
 
 // API Most Rated Films - Categories
 
-// API Most Rated Films - Categories
-
 const apiUrls = [
   "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=9",
   "http://localhost:8000/api/v1/titles/?genre=comedy&sort_by=-imdb_score&page_size=9",
@@ -159,6 +157,13 @@ const fetchData = async () => {
       image.addEventListener("click", function() {
         document.querySelector("#modalImage").src = result.image_url;
         document.querySelector("#myModal").style.display = "block";
+        document.querySelector("#modalTitle").innerHTML = result.title;
+        document.querySelector("#modalGenres").innerHTML = result.genres.join(", ");
+        document.querySelector("#modalYear").innerHTML = result.year;
+        document.querySelector("#modalVotes").innerHTML = result.votes;
+        document.querySelector("#modalImdbScore").innerHTML = result.imdb_score;
+        document.querySelector("#modalDirectors").innerHTML = result.directors.join(", ");
+        document.querySelector("#modalActors").innerHTML = result.actors.join(", ");
       });
       slider.appendChild(image);
     });
