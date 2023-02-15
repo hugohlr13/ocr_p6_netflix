@@ -108,6 +108,61 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// Trailer - Best Movie
+
+document.querySelector('.button-play').addEventListener('click', function() {
+  var modal = document.createElement('div');
+  modal.style.position = 'fixed';
+  modal.style.top = '0';
+  modal.style.left = '0';
+  modal.style.width = '100%';
+  modal.style.height = '100%';
+  modal.style.background = 'rgba(0, 0, 0, 0.8)';
+  modal.style.zIndex = '999';
+  modal.innerHTML = '<iframe width="1000" height="600" src="https://www.youtube.com/embed/KgELjaFRg4w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></iframe>';
+  document.body.appendChild(modal);
+
+  modal.addEventListener('click', function() {
+    modal.style.display = 'none';
+  });
+});
+
+// API - Best Movie Info
+
+const buttonInfo = document.querySelector('.button-info');
+const modal = document.querySelector('.modal');
+const close = document.querySelector('.close');
+
+buttonInfo.addEventListener('click', async function() {
+const response = await fetch("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=1");
+const data = await response.json();
+const result = data.results[0];
+const additionalDataResponse = await fetch(result.url);
+const additionalData = await additionalDataResponse.json();
+document.querySelector("#modalImage").src = result.image_url;
+document.querySelector("#myModal").style.display = "block";
+document.querySelector("#modalTitle").innerHTML = result.title;
+document.querySelector("#modalGenres").innerHTML = result.genres.join(", ");
+document.querySelector("#modalYear").innerHTML = result.year;
+document.querySelector("#modalVotes").innerHTML = result.votes;
+document.querySelector("#modalImdbScore").innerHTML = result.imdb_score;
+document.querySelector("#modalDirectors").innerHTML = result.directors.join(", ");
+document.querySelector("#modalActors").innerHTML = result.actors.join(", ");
+document.querySelector("#modalDuration").innerHTML = additionalData.duration;
+document.querySelector("#modalCountries").innerHTML = additionalData.countries.join(", ");
+});
+
+close.addEventListener('click', function() {
+modal.style.display = 'none';
+});
+
+window.addEventListener('click', function(event) {
+if (event.target === modal) {
+modal.style.display = 'none';
+}
+});
+
+
 // API Most Rated Films - Categories
 
 const apiUrls = [
@@ -131,14 +186,17 @@ const fetchData = async () => {
     const data = await response.json()
     console.log(categories[i], data);
 
-    data.results.forEach(result => {
+    data.results.forEach(async result => {
       if (result.title === "Hopeful Notes") {
         return;
       }
     
       let image = document.createElement('img');
       image.src = result.image_url;
-      image.addEventListener("click", function() {
+      image.addEventListener("click", async function() {
+        const response = await fetch(result.url);
+        const additionalData = await response.json();
+    
         document.querySelector("#modalImage").src = result.image_url;
         document.querySelector("#myModal").style.display = "block";
         document.querySelector("#modalTitle").innerHTML = result.title;
@@ -148,9 +206,12 @@ const fetchData = async () => {
         document.querySelector("#modalImdbScore").innerHTML = result.imdb_score;
         document.querySelector("#modalDirectors").innerHTML = result.directors.join(", ");
         document.querySelector("#modalActors").innerHTML = result.actors.join(", ");
+        document.querySelector("#modalDuration").innerHTML = additionalData.duration;
+        document.querySelector("#modalCountries").innerHTML = additionalData.countries.join(", ");
       });
       slider.appendChild(image);
     });
+    
   }
 
   document.querySelectorAll(".progress-bar").forEach(calculateProgressBar)
@@ -167,56 +228,5 @@ document.querySelector(".close").addEventListener("click", function() {
 window.addEventListener("click", function(event) {
   if (event.target == document.querySelector("#myModal")) {
     document.querySelector("#myModal").style.display = "none";
-  }
-});
-
-
-// Trailer Best Movie
-
-document.querySelector('.button-play').addEventListener('click', function() {
-  var modal = document.createElement('div');
-  modal.style.position = 'fixed';
-  modal.style.top = '0';
-  modal.style.left = '0';
-  modal.style.width = '100%';
-  modal.style.height = '100%';
-  modal.style.background = 'rgba(0, 0, 0, 0.8)';
-  modal.style.zIndex = '999';
-  modal.innerHTML = '<iframe width="1000" height="600" src="https://www.youtube.com/embed/KgELjaFRg4w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></iframe>';
-  document.body.appendChild(modal);
-
-  modal.addEventListener('click', function() {
-    modal.style.display = 'none';
-  });
-});
-
-// Best Movie Info
-
-const buttonInfo = document.querySelector('.button-info');
-const modal = document.querySelector('.modal');
-const close = document.querySelector('.close');
-
-buttonInfo.addEventListener('click', async function() {
-  const response = await fetch("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=1");
-  const data = await response.json();
-  const result = data.results[0];
-  document.querySelector("#modalImage").src = result.image_url;
-  document.querySelector("#myModal").style.display = "block";
-  document.querySelector("#modalTitle").innerHTML = result.title;
-  document.querySelector("#modalGenres").innerHTML = result.genres.join(", ");
-  document.querySelector("#modalYear").innerHTML = result.year;
-  document.querySelector("#modalVotes").innerHTML = result.votes;
-  document.querySelector("#modalImdbScore").innerHTML = result.imdb_score;
-  document.querySelector("#modalDirectors").innerHTML = result.directors.join(", ");
-  document.querySelector("#modalActors").innerHTML = result.actors.join(", ");
-});
-
-close.addEventListener('click', function() {
-  modal.style.display = 'none';
-});
-
-window.addEventListener('click', function(event) {
-  if (event.target === modal) {
-    modal.style.display = 'none';
   }
 });

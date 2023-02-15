@@ -380,7 +380,9 @@ footer .columns{
   #modalVotes,
   #modalImdbScore,
   #modalDirectors,
-  #modalActors {
+  #modalActors,
+  #modalDuration,
+  #modalCountries {
     color: gray;
   }
   
